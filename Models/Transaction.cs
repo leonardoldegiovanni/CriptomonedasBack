@@ -21,11 +21,11 @@ namespace WebCriptomonedas.Models
         public Client? Client { get; set; }
 
         [Required]
-        [Range(0.01, double.MaxValue, ErrorMessage = "La cantidad debe ser mayor a 0")]
+        [Range(0.000001, double.MaxValue, ErrorMessage = "La cantidad debe ser mayor a 0")]
         public decimal CryptoAmount { get; set; }
 
         [Required]
-        [Range(0.01, double.MaxValue, ErrorMessage = "La cantidad debe ser mayor a 0")]
+        [Range(0.000001, double.MaxValue, ErrorMessage = "La cantidad debe ser mayor a 0")]
         public decimal Money { get; set; }
 
         [Required]
