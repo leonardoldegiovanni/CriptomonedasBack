@@ -16,6 +16,36 @@ namespace WebCriptomonedas.Controllers
             _context = context;
         }
 
+        [HttpGet("client/{clientId}")] 
+        public async Task<ActionResult<IEnumerable<TransactionDTO>>> GetTransactionsByClientId(int clientId)
+        {
+            var transactions = await _context.Transactions
+                                             .Where(t => t.ClientId == clientId) 
+                                             .OrderByDescending(t => t.Datetime)
+                                             .ToListAsync();
+
+            if (!transactions.Any())
+             {
+                return Ok(new List<TransactionDTO>()); 
+             }
+
+            var transactionDtos = transactions.Select(t => new TransactionDTO
+            {
+                Id = t.Id,
+                CryptoCode = t.CryptoCode,
+                Action = t.Action,
+                CryptoAmount = t.CryptoAmount,
+                Money = t.Money,
+                Datetime = t.Datetime
+                // Asegúrate que tu TransactionDTO tenga los mismos campos que necesitas mostrar
+            }).ToList();
+
+            return Ok(transactionDtos); 
+        }
+
+
+
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TransactionDTO>>> Get()
         {
@@ -38,7 +68,10 @@ namespace WebCriptomonedas.Controllers
         public async Task<ActionResult<TransactionDTO>> Get(int id)
         {
             var transaction = await _context.Transactions.Where(t => t.Id == id).FirstOrDefaultAsync();
-
+            if (transaction == null)
+            {
+                return NotFound();
+            }
             var transactionDtos = new TransactionDTO
             {
                 Id = transaction.Id,
