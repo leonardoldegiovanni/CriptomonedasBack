@@ -36,7 +36,8 @@ namespace WebCriptomonedas.Controllers
                 Action = t.Action,
                 CryptoAmount = t.CryptoAmount,
                 Money = t.Money,
-                Datetime = t.Datetime
+                Datetime = t.Datetime,
+                ClientId = t.ClientId
                 // Asegúrate que tu TransactionDTO tenga los mismos campos que necesitas mostrar
             }).ToList();
 
@@ -58,7 +59,8 @@ namespace WebCriptomonedas.Controllers
                 Action = t.Action,
                 CryptoAmount = t.CryptoAmount,
                 Money = t.Money,
-                Datetime = t.Datetime
+                Datetime = t.Datetime,
+                ClientId = t.ClientId   
             }).ToList();
 
             return Ok(transactionDtos);
@@ -79,7 +81,9 @@ namespace WebCriptomonedas.Controllers
                 Action = transaction.Action,
                 CryptoAmount = transaction.CryptoAmount,
                 Money = transaction.Money,
-                Datetime = transaction.Datetime
+                Datetime = transaction.Datetime,
+                ClientId = transaction.ClientId
+
 
 
 

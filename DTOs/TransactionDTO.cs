@@ -9,5 +9,8 @@
         public decimal Money { get; set; }
 
         public DateTime Datetime { get; set; }
+
+        public int ClientId { get; set; }
+
     }
 }
